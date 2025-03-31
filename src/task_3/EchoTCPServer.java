@@ -24,6 +24,10 @@ public class EchoTCPServer {
 
         while (true) {
             Socket clientSock = serverSock.accept();
+            SocketAddress clientAddress = clientSock.getRemoteSocketAddress();
+            System.out.println("Accepted client: " + clientAddress);
+
+            // Создание потока для работы с клиентом
             new Thread(() -> connectClient(clientSock)).start();
         }
     }
@@ -31,8 +35,6 @@ public class EchoTCPServer {
     private static void connectClient(Socket clientSock)
     {
         try {
-            SocketAddress clientAddress = clientSock.getRemoteSocketAddress();
-            System.out.println("Accepted client: " + clientAddress);
 
             InputStream in = clientSock.getInputStream();
             OutputStream out = clientSock.getOutputStream();

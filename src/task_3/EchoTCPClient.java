@@ -9,15 +9,15 @@ import java.util.Scanner;
 
 public class EchoTCPClient {
     public static void main(String[] args) throws IOException {
-        if (args.length < 2 || args.length > 3) {
-            throw new IllegalArgumentException("Usage: <Server> <Word> [Port]");
+        if (args.length < 1 || args.length > 2) {
+            throw new IllegalArgumentException("Usage: <Server> [Port]");
         }
 
         String server = args[0];
         int serverPort = (args.length == 2) ? Integer.parseInt(args[1]) : 7;
 
         Socket sock = new Socket(server, serverPort);
-        System.out.println("Connected to server. Sending echo");
+        System.out.println("Connected to server: " + server);
 
         InputStream in = sock.getInputStream();
         OutputStream out = sock.getOutputStream();

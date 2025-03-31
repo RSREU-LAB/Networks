@@ -16,18 +16,17 @@ public class Server {
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
 
-            System.out.println("Time сервер запущен на порту " + PORT);
+            System.out.println("Time Server started on port " + PORT);
 
             while (true) {
-
                 try (Socket clientSocket = serverSocket.accept();
                      OutputStream out = clientSocket.getOutputStream()) {
 
                     long secondsSince1900 = Instant.now().getEpochSecond() + OFFSET_1900_TO_1970;
                     byte[] timeResponse = ByteBuffer.allocate(8).putLong(secondsSince1900).array();
-                    out.write(timeResponse);
-                    System.out.println("Отправлено время клиенту: " + secondsSince1900);
 
+                    out.write(timeResponse);
+                    System.out.println("Time sent to client: " + secondsSince1900);
                 }
             }
 

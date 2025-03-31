@@ -37,9 +37,9 @@ public class ResolveName {
             // Вернет по DNS имени IP адрес
             System.out.println("IP-address from DNS: " + addr3.getHostAddress());
 
-
+            // Проверка хоста
             if (addr2.equals(addr3)) {
-                System.out.println("Это один и тот же хост!");
+                System.out.println("It's the same host!");
             }
 
         } catch (UnknownHostException ex) {

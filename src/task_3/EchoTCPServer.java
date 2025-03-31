@@ -24,6 +24,8 @@ public class EchoTCPServer {
 
         while (true) {
             Socket clientSock = serverSock.accept();
+
+            // Создание потока для работы с клиентом
             new Thread(() -> connectClient(clientSock)).start();
         }
     }

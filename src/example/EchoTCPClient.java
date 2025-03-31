@@ -7,8 +7,8 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class EchoTCPClient {
-    public static void main(String[] args) throws IOException {
 
+    public static void main(String[] args) throws IOException {
         if (args.length < 2 || args.length > 3) {
             throw new IllegalArgumentException("Usage: <Server> <Word> [Port]");
         }
@@ -19,6 +19,7 @@ public class EchoTCPClient {
 
         Socket sock = new Socket(server, serverPort);
         System.out.println("Connected to server. Sending echo");
+
         InputStream in = sock.getInputStream();
         OutputStream out = sock.getOutputStream();
         out.write(data);

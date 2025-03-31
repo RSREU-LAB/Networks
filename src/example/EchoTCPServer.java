@@ -8,10 +8,10 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 public class EchoTCPServer {
+
     private static final int BUFSIZE = 256;
 
     public static void main(String[] args) throws IOException {
-
         if (args.length != 1) {
             throw new IllegalArgumentException("Usage: <Port>");
         }
@@ -29,6 +29,7 @@ public class EchoTCPServer {
 
             InputStream in = clientSock.getInputStream();
             OutputStream out = clientSock.getOutputStream();
+
             int recvMsgSize;
             while ((recvMsgSize = in.read(receiveBuf)) != -1) {
                 out.write(receiveBuf, 0, recvMsgSize);

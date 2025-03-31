@@ -6,10 +6,11 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 public class InterfaceEnum {
+
     public static void main(String[] args) throws SocketException {
         Enumeration<NetworkInterface> ifaces = NetworkInterface.getNetworkInterfaces();
-        while (ifaces.hasMoreElements()) {
 
+        while (ifaces.hasMoreElements()) {
             NetworkInterface iface = ifaces.nextElement();
             System.out.println(iface.getName() + " " + iface.getDisplayName() + ":");
             Enumeration<InetAddress> addrs = iface.getInetAddresses();

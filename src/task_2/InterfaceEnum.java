@@ -36,12 +36,14 @@ public class InterfaceEnum {
     private static void printMacAddress(NetworkInterface iface)
     {
         try {
+
             // Получаем массив байтов MAC-адреса интерфейса
             byte[] macAddress = iface.getHardwareAddress();
 
             if (macAddress != null) {
                 System.out.print("\t MAC address: ");
                 for (int i = 0; i < macAddress.length; i++) {
+
                     // Вывод байта 16-ным числом
                     System.out.format("%02X", macAddress[i]);
 

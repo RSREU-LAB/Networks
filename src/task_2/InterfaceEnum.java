@@ -54,7 +54,7 @@ public class InterfaceEnum {
                 }
                 System.out.print("\n");
             } else {
-                System.out.println("No MAC address");
+                System.out.println("\tNo MAC address");
             }
         } catch (SocketException e) {
             System.err.println("Error getting MAC address: " + e.getMessage());

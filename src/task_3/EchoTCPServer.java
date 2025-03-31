@@ -27,6 +27,7 @@ public class EchoTCPServer {
             SocketAddress clientAddress = clientSock.getRemoteSocketAddress();
             System.out.println("Accepted client: " + clientAddress);
 
+
             // Создание потока для работы с клиентом
             new Thread(() -> connectClient(clientSock)).start();
         }

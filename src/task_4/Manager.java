@@ -42,17 +42,6 @@ public class Manager {
                 pb.redirectErrorStream(true);
                 Process workerProcess = pb.start();
 
-                new Thread(() -> {
-                    try (BufferedReader br = new BufferedReader(new InputStreamReader(workerProcess.getErrorStream()))) {
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            System.err.println("Worker output: " + line);
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }).start();
-
                 InputStream clientIn = clientSocket.getInputStream();
                 OutputStream clientOut = clientSocket.getOutputStream();
                 OutputStream workerIn = workerProcess.getOutputStream();

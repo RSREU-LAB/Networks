@@ -7,12 +7,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Manager {
+
     private static final int BUFF_SIZE = 256;
 
     public static void main(String[] args) {
         if (args.length != 1) {
             throw new IllegalArgumentException("Usage: <Port>");
         }
+
         int port = Integer.parseInt(args[0]);
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Manager started. Listening on port " + port);
@@ -21,13 +23,15 @@ public class Manager {
                 System.out.println("Accepted client: " + clientSocket.getRemoteSocketAddress());
                 new Thread(new ConnectionHandler(clientSocket)).start();
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     static class ConnectionHandler implements Runnable {
-        private Socket clientSocket;
+
+        private final Socket clientSocket;
 
         public ConnectionHandler(Socket clientSocket) {
             this.clientSocket = clientSocket;
@@ -37,7 +41,6 @@ public class Manager {
         public void run() {
             try {
                 ProcessBuilder pb = new ProcessBuilder("java", "-cp", ".", "task_4.Worker");
-                pb.redirectErrorStream(true);
                 Process workerProcess = pb.start();
 
                 InputStream clientIn = clientSocket.getInputStream();
@@ -55,6 +58,7 @@ public class Manager {
                             workerIn.flush();
                         }
                         workerIn.close();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -83,6 +87,7 @@ public class Manager {
 
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
+
             } finally {
                 try {
                     clientSocket.close();

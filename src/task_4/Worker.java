@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Worker {
+
     private static final int BUFF_SIZE = 256;
 
     public static void main(String[] args) {
